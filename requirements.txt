@@ -1,0 +1,17 @@
+selenium
+beautifulsoup4
+requests
+pandas
+python-dotenv
+schedule
+openai
+PyPDF2
+python-docx
+streamlit
+plotly
+openpyxl
+cryptography
+lxml
+chromedriver-autoinstaller
+fake-useragent
+sqlalchemy
