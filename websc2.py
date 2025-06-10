@@ -43,6 +43,8 @@ class BrowserSetup:
     async def setup_browser(self) -> Browser:
         """Setup nodriver browser with robust options"""
         browser_args = [
+            '--no-sandbox',
+            '--incognito',
             '--no-first-run',
             '--no-service-autorun',
             '--no-default-browser-check',
@@ -61,7 +63,7 @@ class BrowserSetup:
         
         config = Config(
             headless=True,
-            sandbox=False,  # Ensures --no-sandbox
+            no_sandbox=True,  # Ensures --no-sandbox
             host="127.0.0.1",
             port=0,
             browser_executable_path=None,  # Auto-detect
@@ -79,7 +81,7 @@ class BrowserSetup:
             config.use_temp_dir = True
 
         try:
-            browser = await start(config=config)
+            browser = await uc.start(config=config)
             logger.info(f"Browser started with args: {browser.config.browser_args}")
             await asyncio.sleep(1)
             if not browser.connection or not browser.connection.is_connected:
@@ -89,6 +91,7 @@ class BrowserSetup:
         except Exception as e:
             logger.error(f"Failed to initialize browser: {str(e)}")
             raise
+
 class TenderScraperManager:
     def __init__(self):
         self.session = None
@@ -111,6 +114,7 @@ class TenderScraperManager:
 
         try:
             login_url = site_config.get('login_url', site_config['base_url'])
+
             await page.get(login_url)
             await page.sleep(5)  # Handle anti-bot challenges
 
