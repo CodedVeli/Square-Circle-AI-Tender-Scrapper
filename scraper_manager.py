@@ -5,7 +5,7 @@ Command-line interface for running scraping operations
 import argparse
 import logging
 from datetime import datetime
-from scraper import ScrapingManager
+from scraper2 import ScrapingManager
 from evaluator import TenderEvaluator
 from models import create_tables
 from config import Config

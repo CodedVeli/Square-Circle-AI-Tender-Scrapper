@@ -10,6 +10,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
+import nodriver as uc
 from bs4 import BeautifulSoup
 import chromedriver_autoinstaller
 from fake_useragent import UserAgent
@@ -37,7 +38,7 @@ class TenderScraper:
         self.ua = UserAgent()
         self.driver = None
         self.scraped_tenders = []
-        
+        self.browser = uc.start()
         # Setup Chrome driver
         chromedriver_autoinstaller.install()
         
